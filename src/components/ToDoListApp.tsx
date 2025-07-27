@@ -24,13 +24,9 @@ function ToDoListApp() {
     };
 
     const toggleTaskCheck = (taskToToggleCheckId: number) => {
-        const taskToCheck = allTasks.find((task: TaskItemData) => task.id === taskToToggleCheckId);
-        if (taskToCheck) {
-            taskToCheck.isChecked = !taskToCheck.isChecked;
-            setAllTasks(allTasks.map(task => task.id === taskToToggleCheckId ? taskToCheck : task))
-        } else {
-            throw Error('Task was not found by ID')
-        }
+        setAllTasks(allTasks.map(task => task.id === taskToToggleCheckId ?
+            { ...task, isChecked: !task.isChecked } :
+            task))
     }
 
     return (
