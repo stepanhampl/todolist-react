@@ -18,14 +18,24 @@ function ToDoListApp() {
     }
 
     const removeTask = (taskToRemoveId: number) => {
-        setAllTasks(allTasks.filter((task: TaskItemData) => { task.id != taskToRemoveId }));
+        setAllTasks(allTasks.filter((task: TaskItemData) => { task.id !== taskToRemoveId }));
     };
 
+    const toggleTaskCheck = (taskToToggleCheckId: number) => {
+        const taskToCheck = allTasks.find((task: TaskItemData) => task.id === taskToToggleCheckId);
+        if (taskToCheck) {
+            taskToCheck.isChecked = !taskToCheck.isChecked;
+
+            setAllTasks(allTasks.map(task => task.id === taskToToggleCheckId ? taskToCheck : task))
+        } else {
+            throw Error('Task was not found by ID')
+        }
+    }
 
     return (
         <>
             <h1>ToDo List</h1>
-            <AllTasksList allTasks={allTasks} removeTask={removeTask} />
+            <AllTasksList allTasks={allTasks} removeTask={removeTask} toggleTaskCheck={toggleTaskCheck} />
             <AddTaskForm createTask={createTask} />
         </>
     )

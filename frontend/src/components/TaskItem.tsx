@@ -3,19 +3,16 @@ import type { TaskItemData } from "../types/TaskItemData"
 interface TaskItemProps {
     data: TaskItemData;
     removeTask: (taskId: number) => void;
+    toggleTaskCheck: (taskToToggleCheckId: number) => void;
 }
 
-function TaskItem({ data, removeTask }: TaskItemProps) {
-
-    function handleRemove(_event: any): void {
-        removeTask(data.id)
-    }
-
+function TaskItem({ data, removeTask, toggleTaskCheck }: TaskItemProps) {
+    console.log(data)
     return (
         <li>
             <span>{data.isChecked ? <s>{data.mainText}</s> : data.mainText}</span>
-            <button onClick={handleRemove}>delete</button>
-            <button>{data.isChecked ? 'uncheck' : 'check'}</button>
+            <button onClick={() => removeTask(data.id)}>delete</button>
+            <button onClick={() => toggleTaskCheck(data.id)}>{data.isChecked ? 'uncheck' : 'check'}</button>
         </li>
     )
 }
