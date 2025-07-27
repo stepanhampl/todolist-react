@@ -8,7 +8,7 @@ function AddTaskForm({ createTask }: AddTaskFormProps) {
 
     const inputRef = useRef<HTMLInputElement>(null);
 
-    function hadnleSubmit(event: FormEvent<HTMLFormElement>): void {
+    function handleSubmit(event: FormEvent<HTMLFormElement>): void {
         event.preventDefault();
         let current = inputRef.current;
         if (current !== null && current.value.trim() != '') {
@@ -19,7 +19,7 @@ function AddTaskForm({ createTask }: AddTaskFormProps) {
     }
 
     return (
-        <form onSubmit={hadnleSubmit}>
+        <form onSubmit={handleSubmit}>
             <input type="text" ref={inputRef} />
             <button type="submit">Add</button>
         </form>
