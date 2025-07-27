@@ -9,6 +9,7 @@ function ToDoListApp() {
     const [allTasks, setAllTasks] = useState<TaskItemData[]>([]);
     const [nextId, setNextId] = useState<number>(0);
     const createTask = (mainText: string) => {
+        console.log("new task id: " + nextId)
         const newTask: TaskItemData = {
             id: nextId,
             mainText: mainText,
@@ -19,7 +20,7 @@ function ToDoListApp() {
     }
 
     const removeTask = (taskToRemoveId: number) => {
-        setAllTasks(allTasks.filter((task: TaskItemData) => { task.id !== taskToRemoveId }));
+        setAllTasks(allTasks.filter((task: TaskItemData) => task.id !== taskToRemoveId));
     };
 
     const toggleTaskCheck = (taskToToggleCheckId: number) => {
