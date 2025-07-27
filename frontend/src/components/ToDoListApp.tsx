@@ -5,23 +5,28 @@ import { useState } from 'react';
 
 
 function ToDoListApp() {
-    
+
     const [allTasks, setAllTasks] = useState<TaskItemData[]>([]);
     let nextId = 0;
     const createTask = (mainText: string) => {
         const newTask: TaskItemData = {
-                id: nextId++,
-                mainText: mainText,
-                isChecked: false,
-            };
+            id: nextId++,
+            mainText: mainText,
+            isChecked: false,
+        };
         setAllTasks([...allTasks, newTask])
     }
+
+    const removeTask = (taskToRemoveId: number) => {
+        setAllTasks(allTasks.filter((task: TaskItemData) => { task.id != taskToRemoveId }));
+    };
+
 
     return (
         <>
             <h1>ToDo List</h1>
-            <AllTasksList allTasks={allTasks}/>
-            <AddTaskForm createTask={createTask} allTasks={allTasks}/>
+            <AllTasksList allTasks={allTasks} removeTask={removeTask} />
+            <AddTaskForm createTask={createTask} />
         </>
     )
 }
