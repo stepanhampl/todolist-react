@@ -10,8 +10,8 @@ interface AllTasksListProps {
 function AllTasksList({ allTasks, removeTask, toggleTaskCheck }: AllTasksListProps) {
     return (
         <ul>
-            {allTasks.map((taskData, index) => (
-                <TaskItem key={index} data={taskData} removeTask={removeTask} toggleTaskCheck={toggleTaskCheck} />
+            {allTasks.map((taskData) => (
+                <TaskItem key={taskData.id} data={taskData} removeTask={removeTask} toggleTaskCheck={toggleTaskCheck} />
             ))}
         </ul>
     )
