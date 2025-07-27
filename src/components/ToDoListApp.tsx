@@ -7,13 +7,14 @@ import { useState } from 'react';
 function ToDoListApp() {
 
     const [allTasks, setAllTasks] = useState<TaskItemData[]>([]);
-    let nextId = 0;
+    const [nextId, setNextId] = useState<number>(0);
     const createTask = (mainText: string) => {
         const newTask: TaskItemData = {
-            id: nextId++,
+            id: nextId,
             mainText: mainText,
             isChecked: false,
         };
+        setNextId(nextId + 1)
         setAllTasks([...allTasks, newTask])
     }
 
@@ -25,7 +26,6 @@ function ToDoListApp() {
         const taskToCheck = allTasks.find((task: TaskItemData) => task.id === taskToToggleCheckId);
         if (taskToCheck) {
             taskToCheck.isChecked = !taskToCheck.isChecked;
-
             setAllTasks(allTasks.map(task => task.id === taskToToggleCheckId ? taskToCheck : task))
         } else {
             throw Error('Task was not found by ID')

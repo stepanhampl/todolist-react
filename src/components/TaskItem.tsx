@@ -7,7 +7,6 @@ interface TaskItemProps {
 }
 
 function TaskItem({ data, removeTask, toggleTaskCheck }: TaskItemProps) {
-    console.log(data)
     return (
         <li>
             <span>{data.isChecked ? <s>{data.mainText}</s> : data.mainText}</span>
